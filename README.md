@@ -17,8 +17,7 @@ In user profile, you can view the save city and a add a comment about it.
 In the comment section you can add/edit/delete your comment.
 
 There will be a log out page that brings you back to the original home screen.
-
-Screen Shot 2021-04-08 at 7 25 15 PM
+![alt text](./erd.png)
 
 Routes
 <ul>
