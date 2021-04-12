@@ -1,5 +1,5 @@
 const models = require('../models')
-const axios = require('axios')
+
 const cityControllers = require('../routes/citiesRoutes')
 
 
