@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     };
     savedCity.init({
         userId: DataTypes.INTEGER,
-        citiesId: DataTypes.INTEGER
+        cityId: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'savedCity',
