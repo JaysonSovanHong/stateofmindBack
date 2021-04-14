@@ -51,6 +51,24 @@ cityControllers.createCity = async(req, res) => {
 
 }
 
+cityControllers.updateCity = async(req, res) => {
+    try {
+        console.log(req.body);
+
+        let updateCity = req.body
+        let newCity = await models.city.findOne({
+            where: {
+                name: req.body.name
+            }
+
+        })
+        const association = await newCity.update(updateCity)
+        res.json({ association })
+    } catch (error) {
+        res.json({ error })
+    }
+}
+
 cityControllers.saveCity = async(req, res) => {
     console.log(req.body.id);
     const newLocation = await models.city.findOrCreate({
@@ -72,6 +90,32 @@ cityControllers.saveCity = async(req, res) => {
 
 
 
+}
+
+cityControllers.deleteCity = async(req, res) => {
+    console.log(req.body);
+
+    try {
+        const user = await models.user.findOne({
+
+            where: {
+                id: req.body.userId
+            }
+
+        })
+        console.log(user);
+        const deleteCity = await models.city.findOne({
+            where: {
+                id: req.body.id
+
+            }
+        })
+        console.log(deleteCity)
+        let association = await user.removeCity(deleteCity)
+        res.json({ userCities: await user.getCities() })
+    } catch (error) {
+        res.status(400).json({ error })
+    }
 }
 
 

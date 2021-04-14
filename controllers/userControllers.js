@@ -1,4 +1,5 @@
 const models = require('../models');
+const cityRoutes = require('../routes/citiesRoutes');
 const userController = require('../routes/usersRoutes');
 
 
@@ -41,9 +42,33 @@ userController.login = async(req, res) => {
     }
 }
 
+userController.getUserInfo = async(req, res) => {
 
+    try {
+        const user = await models.user.findOne({
 
+            where: { id: req.body.userId }
+        })
+        res.json({ userCities: await user.getCities() })
+    } catch (error) {
 
+    }
+}
 
+userController.updateUser = async(req, res) => {
+    try {
+        let updates = req.body
+        let editUser = await models.user.findOne({
+            where: {
+                id: req.body.userId
+            }
+        })
+        let newUser = await editUser.update(updates)
+        res.json({ newUser })
+
+    } catch (error) {
+        res.json({ error })
+    }
+}
 
 module.exports = userController
