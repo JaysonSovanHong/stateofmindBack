@@ -1,16 +1,17 @@
 const express = require('express')
 const app = express()
-const cors = require('cors')
-app.use(cors())
+
 
 const rowdy = require('rowdy-logger')
 const routesReport = rowdy.begin(app)
 
-const userRoutes = require('./routes/usersRoutes')
-const cityRoutes = require('./routes/citiesRoutes')
+
 
 app.use(express.json())
 app.use(require('cors')())
+
+const userRoutes = require('./routes/usersRoutes')
+const cityRoutes = require('./routes/citiesRoutes')
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
